@@ -23,9 +23,9 @@ class TimestampTest extends \PHPUnit_Framework_TestCase
      * @dataProvider getSuccessProcessProvider
      * @param $ts
      */
-    public function testSuccessProcess($ts)
+    public function testSuccessProcess($timestamp)
     {
-        $result = $this->obj->setValue($ts)->process();
+        $result = $this->obj->setValue($timestamp)->process();
         $this->assertTrue($result);
     }
 

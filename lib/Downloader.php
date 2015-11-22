@@ -47,7 +47,7 @@ class Downloader extends Load
 
             $profiler = Profile::getResult();
             foreach ($profiler as $k => $v) {
-                Writer::send(ucfirst($k).' used: '.$v);
+                Writer::send(ucfirst($k) . ' used: ' . $v);
             }
 
         } catch (\Exception $e) {
@@ -100,7 +100,7 @@ class Downloader extends Load
             // check web archive limitations:
             // if website was not blocked by robots.txt rules
             // or any other WBA Exception
-            if ($lineNumber == 1 && strpos($line, 'Exception') !== FALSE) {
+            if ($lineNumber == 1 && strpos($line, 'Exception') !== false) {
                 $msgArray = explode(':', $line);
                 $error = sprintf('Web Archive Error: %s', array_pop($msgArray));
                 throw new \RuntimeException($error);

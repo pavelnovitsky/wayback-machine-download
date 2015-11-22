@@ -59,6 +59,7 @@ class Options
     {
         foreach ($this->data as $type => $value) {
             $className = __NAMESPACE__ . '\\Validate\\' . ucfirst($type);
+            /* @var Validate $className */
             (new $className())->setValue($value)->process();
         }
     }
