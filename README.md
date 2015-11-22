@@ -50,7 +50,7 @@ Downloaded files are saved to the websites/{domain}/* directory. For this exampl
 You are welcome to contribute with pull requests
 
 ##Bug tracking
-WayBack Downloader uses [GitHub issues](https://github.com/pavelnovitsky/wayback-downloader/issues). If you have found bug, please create an issue.
+WayBack Downloader uses [GitHub issues](https://github.com/pavelnovitsky/wayback-machine-download/issues). If you have found bug, please create an issue.
 
 ##License
 This library is released under the terms of the MIT License.
