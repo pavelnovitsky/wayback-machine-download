@@ -15,13 +15,13 @@ Run WayBack Downloader with the base url of the website you want to retrieve as 
 
     php downloader.php -h http://example.com
 
-Downloaded files are saved to the webdsites/{domain}/* directory. For this example it will be websites/example.com/
+Downloaded files are saved to the websites/{domain}/* directory. For this example it will be websites/example.com/
 
 
 ## Options
 
 * -h, --host — mandatory parameter, base url of the downloaded website
-* -t, --timstamp — optional parameter to set the earliest date of the Web Archive snapshots.  WayBack Downloader won't download files added before the specified date. Timestamp format: *yyyyMMddhhmmss*
+* -t, --timestamp — optional parameter to set the earliest date of the Web Archive snapshots.  WayBack Downloader won't download files added before the specified date. Timestamp format: *yyyyMMddhhmmss*
 
 ## Examples
 
