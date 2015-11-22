@@ -6,7 +6,7 @@ Download any website from the Internet Archive Wayback Machine.
 ## Installation
 
 1. Clone repo
-    git clone https://github.com/pavelnovitsky/wayback-downloader.git
+    git clone https://github.com/pavelnovitsky/wayback-machine-download.git
 2. Setup write permissions on the "websites" folder
 
 ## Basic Usage
