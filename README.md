@@ -35,7 +35,7 @@ Downloaded files are saved to the websites/{domain}/* directory. For this exampl
 
     php downloader.php --host=http://example.com --timestamp=20060716231334
 
-##TODO
+## TODO
 
 * Add full test coverage
 * Add separated timestamp options "from" and "to"
@@ -43,14 +43,14 @@ Downloaded files are saved to the websites/{domain}/* directory. For this exampl
 * Add results limiting
 * Access Control support
 
-##Resources used
+## Resources used
 [Wayback CDX Server API](https://github.com/internetarchive/wayback/tree/master/wayback-cdx-server)
 
-##Contributing
+## Contributing
 You are welcome to contribute with pull requests
 
-##Bug tracking
+## Bug tracking
 WayBack Downloader uses [GitHub issues](https://github.com/pavelnovitsky/wayback-machine-download/issues). If you have found bug, please create an issue.
 
-##License
+## License
 This library is released under the terms of the MIT License.
