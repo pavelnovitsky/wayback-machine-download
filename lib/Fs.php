@@ -142,6 +142,11 @@ class Fs
         $path = $this->hostDir . str_replace('/', DIRECTORY_SEPARATOR, $urlKey);
         $pathInfo = pathinfo($path);
 
+        // some sites use index.php in their url path
+        if (strlen($path) > 10 && substr($path, -9) === 'index.php') {
+            $path = substr($path, 0, strrpos($path,'index.php')).'index.htm';
+        }
+
         if (!isset($pathInfo['extension'])) {
             $path .= DIRECTORY_SEPARATOR . 'index.html';
         }
