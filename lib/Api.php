@@ -37,6 +37,10 @@ class Api
             $url .= '&from=' . $this->options->get('timestamp');
         }
 
+        if ($this->options->get('to')) {
+            $url .= '&to=' . $this->options->get('to');
+        }
+
         return $this->client->setUrl($url)->send()->getResult();
     }
 
