@@ -1,13 +1,21 @@
 # WayBack Downloader
-[![Build Status](https://travis-ci.org/pavelnovitsky/wayback-machine-download.svg?branch=master)](https://travis-ci.org/pavelnovitsky/wayback-machine-download)
+[![CI](https://github.com/pavelnovitsky/wayback-machine-download/actions/workflows/ci.yml/badge.svg)](https://github.com/pavelnovitsky/wayback-machine-download/actions/workflows/ci.yml)
 
 Download any website from the Internet Archive Wayback Machine.
+
+Requires PHP 7.3+ with the cURL extension.
 
 ## Installation
 
 1. Clone repo
-    git clone https://github.com/pavelnovitsky/wayback-machine-download.git
-2. Setup write permissions on the "websites" folder
+
+        git clone https://github.com/pavelnovitsky/wayback-machine-download.git
+
+2. Install dependencies
+
+        composer install
+
+3. Setup write permissions on the "websites" folder
 
 ## Basic Usage
 
