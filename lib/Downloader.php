@@ -92,21 +92,7 @@ class Downloader extends Load
      */
     protected function processList()
     {
-        $lines = $this->getFs()->getLines();
-        $lineNumber = 1;
-
-        foreach ($lines as $line) {
-
-            // check web archive limitations:
-            // if website was not blocked by robots.txt rules
-            // or any other WBA Exception
-            if ($lineNumber == 1 && strpos($line, 'Exception') !== false) {
-                $msgArray = explode(':', $line);
-                $error = sprintf('Web Archive Error: %s', array_pop($msgArray));
-                throw new \RuntimeException($error);
-            }
-
-            $lineNumber++;
+        foreach ($this->getLatestSnapshots() as $line) {
 
             // a single unreachable resource must not abort the whole crawl
             try {
@@ -125,5 +111,45 @@ class Downloader extends Load
         }
 
         return $this;
+    }
+
+    /**
+     * Reduce the CDX list to the newest capture per URL.
+     *
+     * The archive lists captures ordered by url key then ascending timestamp,
+     * so the last line seen for a given key is its most recent snapshot. Keeping
+     * one line per key avoids re-downloading every historical capture.
+     *
+     * @return array
+     * @throws \RuntimeException on a first-line Web Archive error
+     */
+    protected function getLatestSnapshots()
+    {
+        $latest = [];
+        $firstLine = true;
+
+        foreach ($this->getFs()->getLines() as $line) {
+
+            // check web archive limitations: robots.txt block or other
+            // WBA exception is reported as the first line of the response
+            if ($firstLine) {
+                $firstLine = false;
+                if (strpos($line, 'Exception') !== false) {
+                    $msgArray = explode(':', $line);
+                    $error = sprintf('Web Archive Error: %s', array_pop($msgArray));
+                    throw new \RuntimeException($error);
+                }
+            }
+
+            $fields = explode(' ', $line);
+            if (count($fields) < 3) {
+                continue;
+            }
+
+            // field 2 is the CDX url key; last occurrence wins (newest)
+            $latest[$fields[2]] = $line;
+        }
+
+        return $latest;
     }
 }
