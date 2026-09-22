@@ -93,6 +93,8 @@ class Client
         curl_setopt($this->curlResource, CURLOPT_FORBID_REUSE, false);
         curl_setopt($this->curlResource, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($this->curlResource, CURLOPT_FAILONERROR, true);
+        curl_setopt($this->curlResource, CURLOPT_CONNECTTIMEOUT, 30);
+        curl_setopt($this->curlResource, CURLOPT_ENCODING, '');
     }
 
     /**

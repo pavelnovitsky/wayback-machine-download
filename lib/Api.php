@@ -10,8 +10,8 @@ namespace Downloader;
 class Api
 {
     // exact, prefix, host, domain
-    const API_URL = 'http://web.archive.org/cdx/search/cdx?url=%s&matchType=host&fl=timestamp,original,urlkey&filter=statuscode:200';
-    const DOWNLOAD_URL = 'http://web.archive.org/web/%sid_/%s';
+    const API_URL = 'https://web.archive.org/cdx/search/cdx?url=%s&matchType=host&fl=timestamp,original,urlkey&filter=statuscode:200';
+    const DOWNLOAD_URL = 'https://web.archive.org/web/%sid_/%s';
 
     private $client = null;
     private $options = null;
@@ -47,7 +47,11 @@ class Api
     public function prepareDownloadInfo($line)
     {
         list($timestamp, $original, $key) = explode(' ', $line);
-        list(, $urlKey) = explode(')', $key);
+
+        // urlkey looks like "com,example)/path"; keep everything after the
+        // first ")" so paths that themselves contain ")" survive intact
+        $parts = explode(')', $key, 2);
+        $urlKey = isset($parts[1]) ? $parts[1] : '/';
 
         if ($urlKey == '/') {
             $urlKey = '/index.html';
