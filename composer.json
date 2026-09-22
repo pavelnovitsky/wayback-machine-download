@@ -1,0 +1,32 @@
+{
+    "name": "pavelnovitsky/wayback-machine-download",
+    "description": "Download any website from the Internet Archive Wayback Machine.",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pavel Novitsky",
+            "email": "mail@pavel-novitsky.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Downloader\\": "lib/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Downloader\\Test\\": "Test/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

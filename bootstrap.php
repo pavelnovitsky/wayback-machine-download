@@ -1,13 +1,11 @@
 <?php
-namespace Downloader;
+/**
+ * Test bootstrap: Composer autoloader plus the base path the file system
+ * layer expects. Used by phpunit.xml.
+ */
 
-define('PATH', dirname(__FILE__));
+require __DIR__ . '/vendor/autoload.php';
 
-set_include_path(
-    PATH . DIRECTORY_SEPARATOR . 'lib' . PATH_SEPARATOR .
-    get_include_path()
-);
-
-/** @noinspection PhpIncludeInspection */
-require PATH . DIRECTORY_SEPARATOR . 'lib' . DIRECTORY_SEPARATOR . 'Autoload.php';
-new Autoload;
+if (!defined('PATH')) {
+    define('PATH', __DIR__);
+}

@@ -13,19 +13,13 @@ if (PHP_SAPI !== 'cli') {
     exit(1);
 }
 
-if (version_compare(phpversion(), '5.4.0', '<') === true) {
-    echo 'WayBack Downloader supports PHP 5.4.0 or later.';
+if (!is_file(__DIR__ . '/vendor/autoload.php')) {
+    echo 'Dependencies are missing. Run "composer install" first.' . PHP_EOL;
     exit(1);
 }
 
-define('PATH', dirname(__FILE__));
+define('PATH', __DIR__);
 
-set_include_path(
-    PATH . DIRECTORY_SEPARATOR . 'lib' . PATH_SEPARATOR .
-    get_include_path()
-);
+require __DIR__ . '/vendor/autoload.php';
 
-/** @noinspection PhpIncludeInspection */
-require 'Autoload.php';
-new Autoload;
 new Downloader;
