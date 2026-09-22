@@ -112,7 +112,9 @@ class Fs
      */
     public function __destruct()
     {
-        unlink($this->tmpListFile);
+        if ($this->tmpListFile !== null && file_exists($this->tmpListFile)) {
+            unlink($this->tmpListFile);
+        }
     }
 
     /**
