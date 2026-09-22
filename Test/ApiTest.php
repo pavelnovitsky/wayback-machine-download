@@ -93,6 +93,7 @@ class ApiTest extends TestCase
         $this->assertSame('RESULT', $result);
         $this->assertStringStartsWith('https://web.archive.org/cdx/search/cdx?url=http://example.com', $client->lastUrl);
         $this->assertStringNotContainsString('&from=', $client->lastUrl);
+        $this->assertStringNotContainsString('&to=', $client->lastUrl);
     }
 
     public function testGetListAppendsTimestamp()
@@ -106,5 +107,33 @@ class ApiTest extends TestCase
         $api->getList();
 
         $this->assertStringContainsString('&from=20060716', $client->lastUrl);
+    }
+
+    public function testGetListAppendsTo()
+    {
+        $client = $this->fakeClient();
+        $options = new Downloader\Options();
+        $options->set('host', 'http://example.com');
+        $options->set('to', '20160101');
+
+        $api = new Downloader\Api($client, $options);
+        $api->getList();
+
+        $this->assertStringContainsString('&to=20160101', $client->lastUrl);
+    }
+
+    public function testGetListAppendsBothBounds()
+    {
+        $client = $this->fakeClient();
+        $options = new Downloader\Options();
+        $options->set('host', 'http://example.com');
+        $options->set('timestamp', '20050101');
+        $options->set('to', '20160101');
+
+        $api = new Downloader\Api($client, $options);
+        $api->getList();
+
+        $this->assertStringContainsString('&from=20050101', $client->lastUrl);
+        $this->assertStringContainsString('&to=20160101', $client->lastUrl);
     }
 }
