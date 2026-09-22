@@ -106,17 +106,22 @@ class Downloader extends Load
                 throw new \RuntimeException($error);
             }
 
-            $linkInfo = $this->getApi()->prepareDownloadInfo($line);
-            $content = $this->getApi()->downloadContent($linkInfo['link']);
-
-            Writer::send(sprintf('%s', $linkInfo['link']));
-
-            if ($content === false) {
-                Writer::send(sprintf('Can\'t download resource %s', $linkInfo['link']), 'warning');
-            }
-
-            $this->getFs()->saveContent($linkInfo['path'], $content);
             $lineNumber++;
+
+            // a single unreachable resource must not abort the whole crawl
+            try {
+                $linkInfo = $this->getApi()->prepareDownloadInfo($line);
+                $content = $this->getApi()->downloadContent($linkInfo['link']);
+
+                Writer::send(sprintf('%s', $linkInfo['link']));
+
+                $this->getFs()->saveContent($linkInfo['path'], $content);
+            } catch (\Exception $e) {
+                Writer::send(
+                    sprintf('Can\'t download resource from line "%s": %s', $line, $e->getMessage()),
+                    'warning'
+                );
+            }
         }
 
         return $this;
