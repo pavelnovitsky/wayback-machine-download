@@ -3,7 +3,7 @@
 namespace Downloader;
 
 /**
- * Class Host
+ * Class Validate
  * validate input params
  * @package WayBack Downloader
  * @author Pavel Novitsky <mail@pavel-novitsky.com>
@@ -35,7 +35,7 @@ abstract class Validate
      * @throws \UnexpectedValueException
      * @return void
      */
-    abstract protected function process();
+    abstract public function process();
 
     /**
      * Check if passed variable is empty
