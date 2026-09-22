@@ -144,6 +144,12 @@ class Fs
      */
     public function saveContent($urlKey, $content)
     {
+        // refuse archive-supplied paths that try to escape the host directory
+        $segments = explode('/', str_replace('\\', '/', $urlKey));
+        if (in_array('..', $segments, true)) {
+            throw new \RuntimeException(sprintf('Refusing to write outside target directory: %s', $urlKey));
+        }
+
         $path = $this->hostDir . str_replace('/', DIRECTORY_SEPARATOR, $urlKey);
         $pathInfo = pathinfo($path);
 
