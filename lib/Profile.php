@@ -41,7 +41,7 @@ class Profile
      */
     public static function getResult()
     {
-        $time = self::getTime() - self::$timeStart;
+        $time = (int) (self::getTime() - self::$timeStart);
 
         return [
             'time' => gmdate('H:i:s', $time),

@@ -3,7 +3,7 @@
 namespace Downloader;
 
 /**
- * Class Clent
+ * Class Client
  * cURL wrapper
  * @package WayBack Downloader
  * @author Pavel Novitsky <mail@pavel-novitsky.com>

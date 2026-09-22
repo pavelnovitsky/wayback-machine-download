@@ -3,14 +3,14 @@
 namespace Downloader\Test;
 
 use Downloader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class WriterTest
  * @package Downloader\Test
  */
-class WriterTest extends \PHPUnit_Framework_TestCase
+class WriterTest extends TestCase
 {
-
     /**
      * @dataProvider sendProvider
      * @param $string
@@ -20,13 +20,11 @@ class WriterTest extends \PHPUnit_Framework_TestCase
     public function testSend($string, $type, $expected)
     {
         ob_start();
-
         Downloader\Writer::send($string, $type);
         $out = ob_get_contents();
         ob_end_clean();
 
-        $this->assertEquals($out, $expected);
-
+        $this->assertEquals($expected, $out);
     }
 
     /**
@@ -40,7 +38,6 @@ class WriterTest extends \PHPUnit_Framework_TestCase
             ['test', 'warning', chr(27) . '[43mtest' . chr(27) . '[0m' . PHP_EOL],
             ['test', 'note', chr(27) . '[44mtest' . chr(27) . '[0m' . PHP_EOL],
             ['test', 'unexpected_status', chr(27) . '[43mtest' . chr(27) . '[0m' . PHP_EOL],
-
         ];
     }
 }

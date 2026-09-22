@@ -3,14 +3,14 @@
 namespace Downloader\Test;
 
 use Downloader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class ColorsTest
  * @package Downloader\Test
  */
-class ColorsTest extends \PHPUnit_Framework_TestCase
+class ColorsTest extends TestCase
 {
-
     /**
      * @param $status
      * @param $expected
@@ -34,5 +34,12 @@ class ColorsTest extends \PHPUnit_Framework_TestCase
             ['note', chr(27) . '[44m%s' . chr(27) . '[0m'],
             ['unknown_status', chr(27) . '[43m%s' . chr(27) . '[0m'],
         ];
+    }
+
+    public function testToStringAppliesColor()
+    {
+        $colors = new Downloader\Colors('hello', 'success');
+        $expected = chr(27) . '[42mhello' . chr(27) . '[0m';
+        $this->assertEquals($expected, (string) $colors);
     }
 }

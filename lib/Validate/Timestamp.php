@@ -34,6 +34,6 @@ class Timestamp extends Downloader\Validate
      */
     public function isNumber()
     {
-        return ctype_digit($this->value);
+        return ctype_digit((string) $this->value);
     }
 }
