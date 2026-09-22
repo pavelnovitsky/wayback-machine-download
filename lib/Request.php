@@ -36,11 +36,7 @@ class Request
     public function getOptions()
     {
         if (empty(self::$options)) {
-            throw new \RuntimeException('Can\'t proceed without options');
-        } else {
-            if (!self::$options || !count(self::$options)) {
-                throw new \RuntimeException('WayBack script should be run with options!');
-            }
+            throw new \RuntimeException('WayBack script should be run with options!');
         }
 
         return self::$options;
