@@ -1,27 +1,27 @@
 <?php
 
-namespace Downloader\Test;
+namespace Downloader\Test\Validate;
 
 use Downloader\Validate;
+use PHPUnit\Framework\TestCase;
 
 /**
- * Class HostTest
- * @package Downloader\Test
+ * Class TimestampTest
+ * @package Downloader\Test\Validate
  */
-class TimestampTest extends \PHPUnit_Framework_TestCase
+class TimestampTest extends TestCase
 {
-
-    /* @var Validate\Host $obj*/
+    /* @var Validate\Timestamp $obj */
     protected $obj = null;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->obj = new Validate\Timestamp();
     }
 
     /**
      * @dataProvider getSuccessProcessProvider
-     * @param $ts
+     * @param $timestamp
      */
     public function testSuccessProcess($timestamp)
     {
@@ -45,12 +45,12 @@ class TimestampTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getFailProcessProvider
-     * @expectedException \UnexpectedValueException
-     * @param $url
+     * @param $timestamp
      */
-    public function testFailProcess($url)
+    public function testFailProcess($timestamp)
     {
-        $this->obj->setValue($url)->process();
+        $this->expectException(\UnexpectedValueException::class);
+        $this->obj->setValue($timestamp)->process();
     }
 
     /**
@@ -60,7 +60,8 @@ class TimestampTest extends \PHPUnit_Framework_TestCase
     {
         return [
             ['abc'],
-            [20.45]
+            ['2000-11'],
+            ['20.45'],
         ];
     }
 }

@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.1/phpunit.xsd"
-         colors="true"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd"
          bootstrap="bootstrap.php"
-         processIsolation="false"
-         stopOnError="true"
-         stderr="true">
+         colors="true"
+         stopOnError="false">
     <testsuites>
         <testsuite name="Tests">
-            <directory>./</directory>
-            <filter>
-                <whitelist>
-                    <directory suffix=".php">Test</directory>
-                </whitelist>
-            </filter>
+            <directory>Test</directory>
         </testsuite>
     </testsuites>
+    <coverage>
+        <include>
+            <directory suffix=".php">lib</directory>
+        </include>
+    </coverage>
 </phpunit>

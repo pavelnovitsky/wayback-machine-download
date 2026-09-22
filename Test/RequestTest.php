@@ -3,17 +3,18 @@
 namespace Downloader\Test;
 
 use Downloader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class RequestTest
  * @package Downloader\Test
  */
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
     /* @var Downloader\Request $obj */
     protected $obj = null;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->obj = new Downloader\Request();
     }
@@ -51,7 +52,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getOptionsFailProvider
-     * @expectedException \RuntimeException
      * @param $set
      */
     public function testFailGetOptions($set)
@@ -62,6 +62,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             $data[$tmp[0]] = $tmp[1];
         }
 
+        $this->expectException(\RuntimeException::class);
         $this->obj->setOptions($data)->getOptions();
     }
 

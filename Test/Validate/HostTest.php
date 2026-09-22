@@ -1,20 +1,20 @@
 <?php
 
-namespace Downloader\Test;
+namespace Downloader\Test\Validate;
 
 use Downloader\Validate;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class HostTest
- * @package Downloader\Test
+ * @package Downloader\Test\Validate
  */
-class HostTest extends \PHPUnit_Framework_TestCase
+class HostTest extends TestCase
 {
-
-    /* @var Validate\Host $obj*/
+    /* @var Validate\Host $obj */
     protected $obj = null;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->obj = new Validate\Host();
     }
@@ -45,11 +45,11 @@ class HostTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider getFailProcessProvider
-     * @expectedException \UnexpectedValueException
      * @param $url
      */
     public function testFailProcess($url)
     {
+        $this->expectException(\UnexpectedValueException::class);
         $this->obj->setValue($url)->process();
     }
 

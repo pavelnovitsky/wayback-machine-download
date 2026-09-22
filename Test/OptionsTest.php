@@ -3,17 +3,18 @@
 namespace Downloader\Test;
 
 use Downloader;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class OptionsTest
  * @package Downloader\Test
  */
-class OptionsTest extends \PHPUnit_Framework_TestCase
+class OptionsTest extends TestCase
 {
     /* @var Downloader\Options $obj */
     protected $obj = null;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->obj = new Downloader\Options();
     }
@@ -44,12 +45,12 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider setFailProvider
-     * @expectedException \RuntimeException
      * @param $key
      * @param $val
      */
     public function testFailSet($key, $val)
     {
+        $this->expectException(\RuntimeException::class);
         $this->obj->set($key, $val);
     }
 
@@ -76,18 +77,16 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('http://test.com', $this->obj->get('host'));
         $this->assertEquals('19831214', $this->obj->get('timestamp'));
-
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testGetFail()
     {
         $this
             ->obj
             ->set('host', 'http://test.com')
             ->set('timestamp', '19831214');
+
+        $this->expectException(\RuntimeException::class);
         $this->obj->get('unsupported-value');
     }
 }
