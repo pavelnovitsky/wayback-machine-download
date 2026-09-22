@@ -10,8 +10,8 @@ namespace Downloader;
 class Api
 {
     // exact, prefix, host, domain
-    const API_URL = 'http://web.archive.org/cdx/search/cdx?url=%s&matchType=host&fl=timestamp,original,urlkey&filter=statuscode:200';
-    const DOWNLOAD_URL = 'http://web.archive.org/web/%sid_/%s';
+    const API_URL = 'https://web.archive.org/cdx/search/cdx?url=%s&matchType=host&fl=timestamp,original,urlkey&filter=statuscode:200';
+    const DOWNLOAD_URL = 'https://web.archive.org/web/%sid_/%s';
 
     private $client = null;
     private $options = null;
