@@ -47,7 +47,11 @@ class Api
     public function prepareDownloadInfo($line)
     {
         list($timestamp, $original, $key) = explode(' ', $line);
-        list(, $urlKey) = explode(')', $key);
+
+        // urlkey looks like "com,example)/path"; keep everything after the
+        // first ")" so paths that themselves contain ")" survive intact
+        $parts = explode(')', $key, 2);
+        $urlKey = isset($parts[1]) ? $parts[1] : '/';
 
         if ($urlKey == '/') {
             $urlKey = '/index.html';
