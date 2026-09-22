@@ -92,6 +92,7 @@ class Client
         curl_setopt($this->curlResource, CURLOPT_HEADER, false);
         curl_setopt($this->curlResource, CURLOPT_FORBID_REUSE, false);
         curl_setopt($this->curlResource, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($this->curlResource, CURLOPT_FAILONERROR, true);
     }
 
     /**

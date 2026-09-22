@@ -112,7 +112,9 @@ class Fs
      */
     public function __destruct()
     {
-        unlink($this->tmpListFile);
+        if ($this->tmpListFile !== null && file_exists($this->tmpListFile)) {
+            unlink($this->tmpListFile);
+        }
     }
 
     /**
@@ -125,8 +127,11 @@ class Fs
         if (!$handle) {
             throw new \RuntimeException('List file was not found');
         }
-        while ($line = fgets($handle)) {
-            yield trim($line);
+        while (($line = fgets($handle)) !== false) {
+            $line = trim($line);
+            if ($line !== '') {
+                yield $line;
+            }
         }
         fclose($handle);
     }
