@@ -25,6 +25,8 @@ Run WayBack Downloader with the base url of the website you want to retrieve as 
 
 Downloaded files are saved to the websites/{domain}/* directory. For this example it will be websites/example.com/
 
+For each page the latest archived snapshot is saved (use `-t` to set the earliest capture date to consider).
+
 
 ## Options
 
@@ -43,9 +45,13 @@ Downloaded files are saved to the websites/{domain}/* directory. For this exampl
 
     php downloader.php --host=http://example.com --timestamp=20060716231334
 
+## Running tests
+
+    composer install
+    vendor/bin/phpunit
+
 ## TODO
 
-* Add full test coverage
 * Add separated timestamp options "from" and "to"
 * Add optional url filter (ex.: only directory, *.jpg, etc)
 * Add results limiting
