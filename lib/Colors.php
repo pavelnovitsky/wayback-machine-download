@@ -26,7 +26,6 @@ class Colors
     public function __construct($string, $type)
     {
         $this->string = sprintf($this->getColor($type), $string);
-        return $this;
     }
 
     /**

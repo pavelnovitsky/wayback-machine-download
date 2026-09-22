@@ -3,7 +3,7 @@
 namespace Downloader;
 
 /**
- * Class Host
+ * Class Writer
  * send line to the console
  * @package WayBack Downloader
  * @author Pavel Novitsky <mail@pavel-novitsky.com>

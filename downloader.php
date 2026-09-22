@@ -18,7 +18,6 @@ if (version_compare(phpversion(), '5.4.0', '<') === true) {
     exit(1);
 }
 
-define('DS', DIRECTORY_SEPARATOR);
 define('PATH', dirname(__FILE__));
 
 set_include_path(
