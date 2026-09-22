@@ -32,6 +32,7 @@ For each page the latest archived snapshot is saved (use `-t` to set the earlies
 
 * -h, --host — mandatory parameter, base url of the downloaded website
 * -t, --timestamp — optional parameter to set the earliest date of the Web Archive snapshots.  WayBack Downloader won't download files added before the specified date. Timestamp format: *yyyyMMddhhmmss*
+* -T, --to — optional parameter to set the latest date of the Web Archive snapshots.  WayBack Downloader won't download files added after the specified date.  Combine with -t to target a date range (useful when a domain later lapsed or was parked). Timestamp format: *yyyyMMddhhmmss*
 
 ## Examples
 
@@ -45,6 +46,8 @@ For each page the latest archived snapshot is saved (use `-t` to set the earlies
 
     php downloader.php --host=http://example.com --timestamp=20060716231334
 
+    php downloader.php -h http://example.com -t 20050101 -T 20160101
+
 ## Running tests
 
     composer install
@@ -52,7 +55,6 @@ For each page the latest archived snapshot is saved (use `-t` to set the earlies
 
 ## TODO
 
-* Add separated timestamp options "from" and "to"
 * Add optional url filter (ex.: only directory, *.jpg, etc)
 * Add results limiting
 * Access Control support

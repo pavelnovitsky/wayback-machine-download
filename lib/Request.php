@@ -18,14 +18,16 @@ class Request
     /**
      * init input options
      * -h, --host — site url for download
-     * -t, --timestamp — start download from specific time
+     * -t, --timestamp — earliest snapshot date to consider
+     * -T, --to — latest snapshot date to consider
      */
     public function __construct()
     {
-        $this->shortOpts = 'h:t:';
+        $this->shortOpts = 'h:t:T:';
         $this->longOpts = [
             'host:',
             'timestamp::',
+            'to::',
         ];
     }
 

@@ -40,6 +40,8 @@ class OptionsTest extends TestCase
             ['t', '20001204'],
             ['host', 'http://example.com'],
             ['timestamp', '20001204'],
+            ['T', '20160101'],
+            ['to', '20160101'],
         ];
     }
 
@@ -73,10 +75,12 @@ class OptionsTest extends TestCase
             ->set('h', 'http://example.com')
             ->set('t', '20001214')
             ->set('host', 'http://test.com')
-            ->set('timestamp', '19831214');
+            ->set('timestamp', '19831214')
+            ->set('T', '20160101');
 
         $this->assertEquals('http://test.com', $this->obj->get('host'));
         $this->assertEquals('19831214', $this->obj->get('timestamp'));
+        $this->assertEquals('20160101', $this->obj->get('to'));
     }
 
     public function testGetFail()

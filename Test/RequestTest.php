@@ -47,6 +47,8 @@ class RequestTest extends TestCase
             [['host-http://example.com', 't-20001204']],
             [['h-http://example.com']],
             [['host-http://example.com']],
+            [['h-http://example.com', 't-20050101', 'T-20160101']],
+            [['host-http://example.com', 'to-20160101']],
         ];
     }
 

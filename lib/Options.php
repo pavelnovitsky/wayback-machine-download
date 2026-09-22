@@ -15,6 +15,7 @@ class Options
     private $data = [
         'host' => null,
         'timestamp' => 0,
+        'to' => 0,
     ];
 
     private $map = [
@@ -22,6 +23,14 @@ class Options
         'host' => 'host',
         't' => 'timestamp',
         'timestamp' => 'timestamp',
+        'T' => 'to',
+        'to' => 'to',
+    ];
+
+    private $validators = [
+        'host' => 'Host',
+        'timestamp' => 'Timestamp',
+        'to' => 'Timestamp',
     ];
 
     /**
@@ -58,7 +67,7 @@ class Options
     public function validate()
     {
         foreach ($this->data as $type => $value) {
-            $className = __NAMESPACE__ . '\\Validate\\' . ucfirst($type);
+            $className = __NAMESPACE__ . '\\Validate\\' . $this->validators[$type];
             /* @var Validate $className */
             (new $className())->setValue($value)->process();
         }
